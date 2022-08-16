@@ -1,0 +1,51 @@
+<h1 class="ml-4 mt-2 font-medium">List Of Posts - </h1>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg m-4 border-2">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    ID
+                </th>
+                <!-- <th scope="col" class="py-3 px-6">
+                    Product name
+                </th> -->
+                <th scope="col" class="py-3 px-6">
+                    Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Body
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of postListData" 
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ data.id }}
+                </th>
+                <td class="py-4 px-6">
+                    {{ data.title }}
+                </td>
+                <!-- <td class="py-4 px-6">
+                    manav@gmail.com
+                </td> -->
+                <td class="py-4 px-6">
+                    {{ data.body }}
+                </td>
+                <td class="flex items-center py-4 px-3 space-x-3">
+                    <a class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        routerLink="/post-detail" (click)="addtoLocalStorage(data)" [queryParams]="{postId:data.id}">
+                        Edit
+                    </a>
+                    <a class="cursor-pointer font-medium text-red-600 dark:text-red-500 hover:underline"
+                        (click)="deletePost(data.id)">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

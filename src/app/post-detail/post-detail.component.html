@@ -1,0 +1,25 @@
+<h1 class="pl-4 pt-2 font-semibold">Details of Post</h1>
+
+<div class="rounded-lg border m-4 p-2 w-4/5">
+    <!-- <span class="text-lg uppercase font-semibold">{{ postDetails.title }}</span><br/>
+    <p>{{ postDetails.body }}</p> -->
+
+    <input [ngClass]="{ 'border border-gray-700 rounded':onEdit }" class="w-full text-lg uppercase font-semibold" [readonly]="!onEdit" type="text" [(ngModel)]="postTitle" />
+    <textarea [ngClass]="{ 'border border-gray-700 mt-1 rounded':onEdit }" class="w-full" [readonly]="!onEdit" [(ngModel)]='postBody'></textarea><br/>
+    <button *ngIf="!onEdit" (click)="onEdit = true" class="bg-green-400 px-4 py-1 rounded-md border text-white">
+        Edit Content
+    </button>
+    <button *ngIf="onEdit" (click)="editPost()" class="bg-blue-500 px-4 py-1 rounded-md border text-white">
+        Save
+    </button>
+    <button *ngIf="onEdit" (click)="onEdit = false;resetForm()" class="bg-red-500 px-4 py-1 ml-1 rounded-md border text-white">
+        Cancel
+    </button>
+</div>
+
+<h1 class="pl-4 font-semibold">Comments - {{ comments?.length }}</h1>
+<div *ngFor="let comment of comments" class="border p-2 m-4 rounded-lg">
+    <span>Name : {{ comment.name }}</span><br/>
+    <span>Email : {{ comment.email }}</span><br/>
+    Comment :<span appTrim> {{  comment.body }}</span>
+</div>
